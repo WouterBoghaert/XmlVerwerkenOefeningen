@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	targetNamespace="http://www.vdab.be/boeken" elementFormDefault="qualified"
+	xmlns="http://www.vdab.be/boeken">
+	<xs:complexType name="Curriculum">
+		<xs:sequence>
+			<xs:element name="Naam" type="xs:string" />
+			<xs:element name="Beroepencode" type="xs:positiveInteger" />
+		</xs:sequence>
+		<xs:attribute name="nr" type="xs:positiveInteger" />
+	</xs:complexType>
+	<xs:complexType name="Curriculums">
+		<xs:sequence>
+			<xs:element type="Curriculum" name="Curriculum" maxOccurs="unbounded" />
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Boek">
+		<xs:sequence>
+			<xs:element name="Titel" type="xs:string" />
+			<xs:element name="Schrijver" type="xs:string" />
+			<xs:element name="Uitgever" type="xs:string" />
+			<xs:element name="Curriculums" type="Curriculums" />
+		</xs:sequence>
+		<xs:attribute name="boeknr" type="xs:positiveInteger" />
+		<xs:attribute name="isbn" type="xs:positiveInteger" />
+	</xs:complexType>
+	<xs:complexType name="Boeken">
+		<xs:sequence>
+			<xs:element name="Boek" type="Boek" minOccurs="0"
+				maxOccurs="unbounded" />
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="Boeken" type="Boeken" />
+</xs:schema>
